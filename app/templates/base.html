@@ -13,6 +13,9 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Koodilehto Intra</a>
+      % if current_user.is_authenticated()
+      <a class="navbar-brand pull-right" href="{{url_for('authentication.logout')}}">Kirjaudu ulos</a>
+      % endif
     </div>
     <!-- <div class="navbar-collapse collapse"> -->
     <!--     <ul class="nav navbar-nav"> -->

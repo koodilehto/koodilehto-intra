@@ -1,8 +1,10 @@
 # Main initialization file
 
-from flask import Flask, flash, render_template
+from flask import Flask
 from flask.ext.script import Manager, Server
 from flask.ext.bootstrap import Bootstrap
+from authentication import authentication, login_manager
+from index import index
 
 # import authentication
 
@@ -13,14 +15,10 @@ Bootstrap(app)
 
 app.config["SECRET_KEY"] = "ITSASECRET"
 
-# app.register_blueprint(authentication.mod)
-# authentication.login_manager.init_app(app) TODO
+app.register_blueprint(authentication)
+login_manager.init_app(app)
 
-
-@app.route('/')
-def index():
-    flash('Not much to see yet.')
-    return render_template('index.html')
+app.register_blueprint(index)
 
 
 manager = Manager(app)
