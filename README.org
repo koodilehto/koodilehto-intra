@@ -1,5 +1,5 @@
 * Development guide
-(Written on Linux Mint 17.2 / Ubuntu 14.04)
+Tested on Linux Mint 17.2 (Ubuntu 14.04) and OSX 10.10 (homebrew python3)
 
 Distribution provided prerequirements:
 - Python 3.4 with development package
@@ -11,15 +11,17 @@ Some (optional) tooling provided by pip:
 - [[http://docs.python-guide.org/en/latest/dev/virtualenvs/][virtualenv]] Python project dependency isolation tool
 - [[https://virtualenvwrapper.readthedocs.org/en/latest/][virtualenvwrapper]] virtualenv helper (supported by [[https://www.gnu.org/software/emacs/][Emacs]] [[https://github.com/jorgenschaefer/elpy/wiki][ELPY Python IDE]])
 =pip install virtualenv virtualenvwrapper=
-=mkvirtualenv -p /usr/bin/python3.4 measurement-helper=
+=mkvirtualenv -p /usr/bin/python3.4 koodilehto-intra=
+
+=mkvirtualenv= command activates the created virtual environment by default. Later it can be activated with =workon koodilehto-intra= 
 
 Install project dependencies =pip install -r requirements.txt=.
 
-Pip may throw permission error about ~/.cache/pip/ when installing. Fix by running =sudo chown -R USERNAME:USERNAME $HOME/.cache/pip=.
+Pip may throw permission error about pip cache folder when installing. Fix by running =sudo chown -R <your username>:<your username> $HOME/.cache/pip= on Linux or =sudo chown -R <your username> $HOME/Library/Caches/pip= on OSX.
 
 * Running development server
-Command =python server.py dev= runs Flask development server on localhost:5000.
+Command =python app/server.py dev= runs Flask development server on localhost:5000.
 
-Host and port can be changed with options -h and -p eg. =python server.py dev -h 0.0.0.0 -p 8008=.
+Host and port can be changed with options -h and -p eg. =python app/server.py dev -h 0.0.0.0 -p 8008=.
 
-Command =python server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.
+Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.
