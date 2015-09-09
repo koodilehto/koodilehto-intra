@@ -25,3 +25,24 @@ Command =python app/server.py dev= runs Flask development server on localhost:50
 Host and port can be changed with options -h and -p eg. =python app/server.py dev -h 0.0.0.0 -p 8008=.
 
 Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.
+* To Do
+See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO%20]['TODO']] codetags in source code.
+There might be some [[grep:HACK%20]['HACK']] codetags also.
+
+Protip: Evaluate following emacs-lisp for interactive grep-links.
+
+#+BEGIN_SRC emacs-lisp
+
+(org-add-link-type
+ "grep" 'endless/follow-grep-link)
+
+(defun endless/follow-grep-link (regexp)
+  "Run `rgrep' with REGEXP as argument."
+  (grep-compute-defaults)
+  (rgrep regexp "*" (expand-file-name "./")))
+
+#+END_SRC
+
+
+
+

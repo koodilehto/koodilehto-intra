@@ -1,0 +1,6 @@
+It's pretty empty out there currently..
+* TODO Schema
+* TODO Database migrations
+* TODO Views
+* TODO Tests
+
