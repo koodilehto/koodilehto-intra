@@ -3,8 +3,9 @@ from flask import Blueprint, render_template, flash, request, redirect, \
     url_for
 from flask_wtf import Form
 from wtforms import PasswordField, SubmitField, TextField
-from flask.ext.login import LoginManager, login_user, UserMixin, logout_user
+from flask.ext.login import LoginManager, login_user, logout_user
 from wtforms.validators import DataRequired, AnyOf
+from models import User
 
 
 auth_keys = ['topsecret', 'asdf']
@@ -13,23 +14,6 @@ authentication = Blueprint('authentication', __name__)
 
 login_manager = LoginManager()
 login_manager.login_view = "authentication.login"
-
-
-class User(UserMixin):
-    # http://gouthamanbalaraman.com/blog/minimal-flask-login-example.html
-    # https://flask-login.readthedocs.org/en/latest/#your-user-class
-
-    # TODO proper user model for SQLAlchemy
-    # id = db.Column(db.Integer, primary_key=True)
-    # username = db.Column(db.String(80), unique=True)
-    # email = db.Column(db.String(120), unique=True)
-
-    def __init__(self):
-        self.id = "no-one"
-
-    @classmethod
-    def get(cls, id):
-        return User(id)
 
 
 @login_manager.user_loader
