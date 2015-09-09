@@ -1,3 +1,11 @@
+* Overview
+Project structure is more or less based on O'Reilly book example https://github.com/miguelgrinberg/flasky
+
+- ORM is [[https://peewee.readthedocs.org/en/latest/][Peewee]], which is advertised as being minimal and well documented.
+- [[https://pythonhosted.org/Flask-Security/][Flask-Security]] (based on Flask-Login, Flask-Principal etc.) handles role based user authentication, registration, mailing etc.
+
+Some interesting, yet to be configured, extensions are listed in [[file:TODO.org][TODO.org]]
+
 * Development guide
 Tested on Linux Mint 17.2 (Ubuntu 14.04) and OSX 10.10 (homebrew python3)
 
@@ -20,11 +28,12 @@ Install project dependencies =pip install -r requirements.txt=.
 Pip may throw permission error about pip cache folder when installing. Fix by running =sudo chown -R <your username>:<your username> $HOME/.cache/pip= on Linux or =sudo chown -R <your username> $HOME/Library/Caches/pip= on OSX.
 
 * Running development server
-Command =python app/server.py dev= runs Flask development server on localhost:5000.
+Command =python manage.py runserver= starts app in Flask development server on localhost:5000.
 
-Host and port can be changed with options -h and -p eg. =python app/server.py dev -h 0.0.0.0 -p 8008=.
+Host and port can be changed with options -h and -p eg. =python manage.py runserver -h 0.0.0.0 -p 8008=.
 
-Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.
++Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.+
+
 * To Do
 See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO%20]['TODO']] codetags in source code.
 There might be some [[grep:HACK%20]['HACK']] codetags also.
