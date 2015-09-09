@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.ext.bootstrap import Bootstrap
 from playhouse.flask_utils import FlaskDB
+from flask.ext.security import Security, PeeweeUserDatastore
 
 from config import config
 
@@ -10,6 +11,8 @@ bootstrap = Bootstrap()
 # persist information
 db = FlaskDB()
 
+from .models import Role, User, UserRoles
+
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -17,6 +20,14 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     db.init_app(app)
+    user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
+    security = Security(app, user_datastore)
+
+    for Model in (Role, User, UserRoles):
+        Model.drop_table(fail_silently=True)
+        Model.create_table(fail_silently=True)
+    user_datastore.create_user(email='jarkko.saltiola@koodilehto.fi',
+                               password='topsecret')
 
     app.jinja_env.line_statement_prefix = '%'
     bootstrap.init_app(app)
