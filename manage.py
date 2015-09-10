@@ -22,8 +22,8 @@ manager.add_command('populate_db', PopulateDB())
 
 @manager.command
 def list_routes():
-    from urllib.parse import unquote
-    output = []
+    from tabulate import tabulate
+    output = [["Endpoint function", "Methods", "Url"]]
     for rule in app.url_map.iter_rules():
         options = {}
         for arg in rule.arguments:
@@ -31,12 +31,11 @@ def list_routes():
 
         methods = ','.join(rule.methods)
         url = url_for(rule.endpoint, **options)
-        line = unquote(
-            "{:50s} {:20s} {}".format(rule.endpoint, methods, url))
-        output.append(line)
+        # line = unquote(
+        #     "{:50s} {:20s} {}".format(rule.endpoint, methods, url))
+        output.append([rule.endpoint, methods, url])
 
-    for line in sorted(output):
-        print(line)
+    print(tabulate(output, headers="firstrow"))
 
 
 @manager.command
