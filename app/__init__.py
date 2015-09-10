@@ -15,6 +15,7 @@ from .models import Role, User, UserRoles
 
 
 def create_app(config_name):
+    '''Flask application factory function'''
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
@@ -23,14 +24,8 @@ def create_app(config_name):
     bootstrap.init_app(app)
 
     db.init_app(app)
-    user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
-    security = Security(app, user_datastore)
-
-    for Model in (Role, User, UserRoles):
-        Model.drop_table(fail_silently=True)
-        Model.create_table(fail_silently=True)
-    user_datastore.create_user(email='jarkko.saltiola@koodilehto.fi',
-                               password='topsecret')
+    app.user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
+    security = Security(app, app.user_datastore)
 
     from .public import public as public_blueprint
     app.register_blueprint(public_blueprint)

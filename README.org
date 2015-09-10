@@ -41,6 +41,18 @@ Install project dependencies =pip install -r requirements.txt=.
 
 Pip may throw permission error about pip cache folder when installing. Fix by running =sudo chown -R <your username>:<your username> $HOME/.cache/pip= on Linux or =sudo chown -R <your username> $HOME/Library/Caches/pip= on OSX.
 
+* Initialize database
+=./manage.py reset_db= drops and creates tables
+=./manage.py populate_db= adds user accounts for testing
+
+```
+Accounts for testing:
+testmember, testmember@example.com, pass: password
+testadmin, testadmin@example.com, pass: password, roles: admin
+```
+
+- TODO currently works only with 'development' configuration
+
 * Running development server
 Command =python manage.py runserver= starts app in Flask development server on localhost:5000.
 
