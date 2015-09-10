@@ -1,15 +1,17 @@
 {% extends "bootstrap/base.html" %}
+{% import 'admin/static.html' as admin_static with context %}
 
 {% block title %}Koodilehto Intra{% endblock %}
 
 {% block head %}
 {{ super() }}  <!-- Retain block content from parent -->
+<link href="{{ admin_static.url(filename='admin/css/bootstrap3/admin.css') }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar" role="navigation">
+<div class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Koodilehto Intra</a>
@@ -19,11 +21,11 @@
       % else
       <a class="navbar-brand pull-right" href="/login">Kirjaudu sisään</a>
       % endif
-      
+
       <a class="navbar-brand pull-right" href="{{url_for('public.view')}}">/public</a>
       <a class="navbar-brand pull-right" href="{{url_for('member.view')}}">/member</a>
-      <a class="navbar-brand pull-right" href="{{url_for('admin.view')}}">/admin</a>
-      
+      <a class="navbar-brand pull-right" href="{{url_for('admin.index')}}">/admin</a>
+
     </div>
     <!-- <div class="navbar-collapse collapse"> -->
     <!--     <ul class="nav navbar-nav"> -->
@@ -50,4 +52,7 @@
 
 {% block scripts %}
 {{ super() }}
+<script src="{{ admin_static.url(filename='vendor/jquery-2.1.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_static.url(filename='vendor/moment-2.8.4.min.js') }}" type="text/javascript"></script>
+<script src="{{ admin_static.url(filename='vendor/select2/select2.min.js') }}" type="text/javascript"></script>
 {% endblock %}

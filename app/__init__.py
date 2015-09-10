@@ -2,6 +2,8 @@ from flask import Flask
 from flask.ext.bootstrap import Bootstrap
 from playhouse.flask_utils import FlaskDB
 from flask.ext.security import Security, PeeweeUserDatastore
+from flask_admin import Admin
+from flask_admin import helpers as admin_helpers
 
 from config import config
 
@@ -12,6 +14,8 @@ bootstrap = Bootstrap()
 db = FlaskDB()
 
 from .models import Role, User, UserRoles
+
+# admin = create_admin()
 
 
 def create_app(config_name):
@@ -27,13 +31,31 @@ def create_app(config_name):
     app.user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
     security = Security(app, app.user_datastore)
 
+    ### Setup blueprints
+
     from .public import public as public_blueprint
     app.register_blueprint(public_blueprint)
 
     from .member import member as member_blueprint
     app.register_blueprint(member_blueprint)
 
-    from .admin import admin as admin_blueprint
-    app.register_blueprint(admin_blueprint)
+
+    ### Setup flask-admin
+
+    from .admin.controller import MyModelView
+    admin = Admin(app, 'Koodilehto Admin', base_template='admin/master.html',
+                  template_mode='bootstrap3')
+
+    admin.add_view(MyModelView(User))
+
+    # define a context processor for merging flask-admin's template context
+    # into the flask-security views.
+    @security.context_processor
+    def security_context_processor():
+        return dict(
+            admin_base_template=admin.base_template,
+            admin_view=admin.index_view,
+            h=admin_helpers
+        )
 
     return app

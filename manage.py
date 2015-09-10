@@ -28,13 +28,9 @@ def list_routes():
         options = {}
         for arg in rule.arguments:
             options[arg] = "[{0}]".format(arg)
-
         methods = ','.join(rule.methods)
         url = url_for(rule.endpoint, **options)
-        # line = unquote(
-        #     "{:50s} {:20s} {}".format(rule.endpoint, methods, url))
         output.append([rule.endpoint, methods, url])
-
     print(tabulate(output, headers="firstrow"))
 
 
