@@ -31,7 +31,7 @@ def create_app(config_name):
     app.user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
     security = Security(app, app.user_datastore)
 
-    ### Setup blueprints
+    #     Setup blueprints
 
     from .public import public as public_blueprint
     app.register_blueprint(public_blueprint)
@@ -39,11 +39,10 @@ def create_app(config_name):
     from .member import member as member_blueprint
     app.register_blueprint(member_blueprint)
 
-
-    ### Setup flask-admin
+    #     Setup flask-admin
 
     from .admin.controller import MyModelView
-    admin = Admin(app, 'Koodilehto Admin', base_template='admin/master.html',
+    admin = Admin(app, 'Admin Panel',
                   template_mode='bootstrap3')
 
     admin.add_view(MyModelView(User))
