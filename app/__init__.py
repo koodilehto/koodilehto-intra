@@ -46,6 +46,8 @@ def create_app(config_name):
                   template_mode='bootstrap3')
 
     admin.add_view(MyModelView(User))
+    admin.add_view(MyModelView(Role))
+    admin.add_view(MyModelView(UserRoles))
 
     # define a context processor for merging flask-admin's template context
     # into the flask-security views.

@@ -14,10 +14,16 @@ class User(db.Model, UserMixin):
     # class Meta:
     #     order_by = ('username',)
 
+    def __unicode__(self):
+        return(self.email)
+
 
 class Role(db.Model, RoleMixin):
     name = CharField(unique=True)
     description = TextField(null=True)
+
+    def __unicode__(self):
+        return(self.name)
 
 
 class UserRoles(db.Model):
@@ -28,3 +34,6 @@ class UserRoles(db.Model):
     role = ForeignKeyField(Role, related_name='users')
     name = property(lambda self: self.role.name)
     description = property(lambda self: self.role.description)
+
+    def __unicode__(self):
+        return(self.user + " is " + self.role)
