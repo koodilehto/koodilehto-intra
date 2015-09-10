@@ -54,13 +54,15 @@ testadmin, testadmin@example.com, pass: password, roles: admin
 ```
 
 - TODO currently works only with 'development' configuration
-
 * Running development server
 Command =python manage.py runserver= starts app in Flask development server on localhost:5000.
 
 Host and port can be changed with options -h and -p eg. =python manage.py runserver -h 0.0.0.0 -p 8008=.
 
 +Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.+
+
+* Utility commands
+=./manage.py list_routes= shows registered routes
 
 * To Do
 See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO\|HACK]['TODO' and 'HACK']] codetags in source code.

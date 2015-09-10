@@ -2,6 +2,7 @@
 import os
 from app import create_app, db
 from app.models import User, Role
+from flask import url_for
 from flask.ext.script import Manager, Shell
 from app.scripts import ResetDB, PopulateDB
 # from flask.ext.migrate import Migrate, MigrateCommand
@@ -17,6 +18,25 @@ manager.add_command("shell", Shell(make_context=make_shell_context))
 
 manager.add_command('reset_db', ResetDB())
 manager.add_command('populate_db', PopulateDB())
+
+
+@manager.command
+def list_routes():
+    from urllib.parse import unquote
+    output = []
+    for rule in app.url_map.iter_rules():
+        options = {}
+        for arg in rule.arguments:
+            options[arg] = "[{0}]".format(arg)
+
+        methods = ','.join(rule.methods)
+        url = url_for(rule.endpoint, **options)
+        line = unquote(
+            "{:50s} {:20s} {}".format(rule.endpoint, methods, url))
+        output.append(line)
+
+    for line in sorted(output):
+        print(line)
 
 
 @manager.command
