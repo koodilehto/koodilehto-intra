@@ -1,5 +1,7 @@
 * Overview
-Project structure is more or less based on O'Reilly book example https://github.com/miguelgrinberg/flasky
+Project structure is more or less based on:
+- O'Reilly book example https://github.com/miguelgrinberg/flasky
+- https://github.com/hansonkd/FlaskBootstrapSecurity template project
 
 - ORM is [[https://peewee.readthedocs.org/en/latest/][Peewee]], which is advertised as being minimal and well documented.
 - [[https://pythonhosted.org/Flask-Security/][Flask-Security]] (based on Flask-Login, Flask-Principal etc.) handles role based user authentication, registration, mailing etc.

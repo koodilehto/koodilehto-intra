@@ -32,7 +32,13 @@ def create_app(config_name):
     user_datastore.create_user(email='jarkko.saltiola@koodilehto.fi',
                                password='topsecret')
 
-    from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from .public import public as public_blueprint
+    app.register_blueprint(public_blueprint)
+
+    from .member import member as member_blueprint
+    app.register_blueprint(member_blueprint)
+
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint)
 
     return app
