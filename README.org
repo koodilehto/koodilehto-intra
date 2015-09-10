@@ -21,7 +21,19 @@ Some (optional) tooling provided by pip:
 =pip install virtualenv virtualenvwrapper=
 =mkvirtualenv -p /usr/bin/python3.4 koodilehto-intra=
 
-=mkvirtualenv= command activates the created virtual environment by default. Later it can be activated with =workon koodilehto-intra= 
+Emacs ELPY pip dependencies can be symlinked from global site-packages dir to virtualenv specific site-packages dir. Consult (elpy-config) and [[https://elpy.readthedocs.org/en/latest/introduction.html][installation docs]] for more info.
+
+#+BEGIN_SRC sh
+sudo pip3 install jedi rope_py3k importmagic autopep8
+cd $VIRTUAL_ENV/lib/python3.4/site-packages
+ln -s /usr/local/lib/python3.4/site-packages/jedi .
+ln -s /usr/local/lib/python3.4/site-packages/autopep8.py .
+ln -s /usr/local/lib/python3.4/site-packages/importmagic .
+ln -s /usr/local/lib/python3.4/site-packages/rope .
+#+END_SRC
+
+
+=mkvirtualenv= command activates the created virtual environment by default. Later it can be activated with =workon koodilehto-intra=
 
 Install project dependencies =pip install -r requirements.txt=.
 
@@ -51,7 +63,3 @@ Protip: Evaluate following emacs-lisp for interactive grep-links.
   (rgrep regexp "*" (expand-file-name "./")))
 
 #+END_SRC
-
-
-
-
