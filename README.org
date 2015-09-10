@@ -3,6 +3,8 @@ Project structure is more or less based on:
 - O'Reilly book example https://github.com/miguelgrinberg/flasky
 - https://github.com/hansonkd/FlaskBootstrapSecurity template project
 
+Some main components:
+- Jinja2 templating, Flask-Bootstrap, WTForms
 - ORM is [[https://peewee.readthedocs.org/en/latest/][Peewee]], which is advertised as being minimal and well documented.
 - [[https://pythonhosted.org/Flask-Security/][Flask-Security]] (based on Flask-Login, Flask-Principal etc.) handles role based user authentication, registration, mailing etc.
 
@@ -61,8 +63,7 @@ Host and port can be changed with options -h and -p eg. =python manage.py runser
 +Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.+
 
 * To Do
-See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO%20]['TODO']] codetags in source code.
-There might be some [[grep:HACK%20]['HACK']] codetags also.
+See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO\|HACK]['TODO' and 'HACK']] codetags in source code.
 
 Protip: Evaluate following emacs-lisp for interactive grep-links.
 
