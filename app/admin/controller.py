@@ -4,6 +4,6 @@ from . import admin
 
 
 @admin.route('/admin')
-@roles_required(['admin'])
+@roles_required('admin')
 def view():
     return render_template('admin.html')
