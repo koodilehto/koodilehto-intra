@@ -42,7 +42,7 @@ def create_app(config_name):
     #     Setup flask-admin
 
     from .admin.controller import MyModelView, MyAdminView
-    admin = Admin(app, 'Koodilehto Admin',
+    admin = Admin(app, 'Admin Panel',
                   template_mode='bootstrap3',
                   index_view=MyAdminView(
                       name='MyAdminView',

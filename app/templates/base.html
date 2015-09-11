@@ -14,12 +14,12 @@
 <div class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Koodilehto Intra</a>
+      <a class="navbar-brand" href="/">Coop Intra</a>
 
       % if current_user.is_authenticated()
-      <a class="navbar-brand pull-right" href="/logout">Kirjaudu ulos</a>
+      <a class="navbar-brand pull-right" href="/logout">Log Out</a>
       % else
-      <a class="navbar-brand pull-right" href="/login">Kirjaudu sisään</a>
+      <a class="navbar-brand pull-right" href="/login">Log In</a>
       % endif
 
       <a class="navbar-brand pull-right" href="{{url_for('public.view')}}">/public</a>

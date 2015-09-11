@@ -41,6 +41,10 @@
       {% endblock %}
     </div>
   </nav>
+  
+  <!-- TODO hide when not running 'development' -->
+  <a class="btn btn-danger pull-right float-right" href="{{url_for('public.init_db')}}">Init Database</a>
+  
   {% set render_ctx = h.resolve_ctx() %}
   {% block admin_body %}{% endblock %}
 </div>
