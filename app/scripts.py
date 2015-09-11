@@ -30,14 +30,18 @@ class PopulateDB(Command):
     @staticmethod
     def create_roles():
         current_app.user_datastore.create_role(name='admin',
-                                               description='admin')
+                                               description='Database admin')
+        current_app.user_datastore.create_role(name='board',
+                                               description='Board member')
         current_app.user_datastore.commit()
-        print("PopulateDB: created admin role")
+        print("PopulateDB: created ''admin' and 'board' roles")
 
     @staticmethod
     def create_users():
         for u in (('testadmin', 'testadmin@example.com',
                    'password', ['admin'], True),
+                  ('testboardmember', 'testboard@example.com',
+                   'password', ['board'], True),
                   ('testmember', 'testmember@example.com',
                    'password', [], True)):
             user = current_app.user_datastore.create_user(

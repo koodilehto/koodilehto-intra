@@ -39,6 +39,9 @@ def create_app(config_name):
     from .member import member as member_blueprint
     app.register_blueprint(member_blueprint)
 
+    from .board import board as board_blueprint
+    app.register_blueprint(board_blueprint)
+
     #     Setup flask-admin
 
     from .admin.controller import MyModelView, MyAdminView

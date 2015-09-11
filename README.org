@@ -48,11 +48,14 @@ Pip may throw permission error about pip cache folder when installing. Fix by ru
 =./manage.py reset_db= drops and creates tables
 =./manage.py populate_db= adds user accounts for testing
 
-```
-Accounts for testing:
-testmember, testmember@example.com, pass: password
-testadmin, testadmin@example.com, pass: password, roles: admin
-```
+There are 4 types of user levels. Accounts for testing:
+| username   | email                  | password | roles |
+|------------+------------------------+----------+-------|
+| testmember | testmember@example.com | password |       |
+| testboard  | testboard@example.com  | password | board |
+| testadmin  | testadmin@example.com  | password | admin |
+
+=anonymous < member < board < admin=
 
 - TODO currently works only with 'development' configuration
 * Running development server
