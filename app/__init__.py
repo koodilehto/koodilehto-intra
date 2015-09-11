@@ -45,7 +45,7 @@ def create_app(config_name):
     admin = Admin(app, 'Admin Panel',
                   template_mode='bootstrap3',
                   index_view=MyAdminView(
-                      name='MyAdminView',
+                      name='Admin Index',
                       template='admin/index.html',
                       url='/admin'))
 
