@@ -15,8 +15,8 @@ class ResetDB(Command):
     def drop_tables():  # TODO handle configuration variations
         app = create_app('development')  # HACK -ish? Better way to do this?
         for m in (Role, User, UserRoles):
-            m.drop_table()
-            m.create_table()
+            m.drop_table(fail_silently=True)
+            m.create_table(fail_silently=True)
             print('ResetDB: rebuilt ' + str(m))
 
 
