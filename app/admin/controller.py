@@ -1,13 +1,18 @@
-from flask import render_template, abort, redirect, url_for, request
-from flask.ext.security import roles_required, current_user
+# Customized Flask-Admin view classes for embedding admin views to custom
+# page layout
+from flask import abort, redirect, url_for, request
+from flask.ext.security import current_user, roles_required
 from flask_admin.contrib.peewee import ModelView
+from flask_admin.base import AdminIndexView, expose
 
-# from . import admin as blueprint  # blueprint
 
-# HACK probably not the prettiest way to initialize flask-admin views.
-# Discussed at https://github.com/flask-admin/flask-admin/issues/910
-# def create_admin(app=None, *args, **kwargs):
-#     return Admin(app, *args, **kwargs)
+# Custom admin index view for
+class MyAdminView(AdminIndexView):
+    @expose('/')
+    @roles_required('admin')
+    def index(self):
+        arg1 = 'Hello'
+        return self.render('admin/index.html', arg1=arg1)
 
 
 # Create customized model view class
@@ -20,6 +25,7 @@ class MyModelView(ModelView):
             return True
         return False
 
+    @roles_required('admin')
     def _handle_view(self, name, **kwargs):
         """
         Override builtin _handle_view in order to redirect users when a view is

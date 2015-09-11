@@ -1,11 +1,11 @@
-from flask import Flask
-from flask.ext.bootstrap import Bootstrap
+from flask_admin import Admin, helpers as admin_helpers
 from playhouse.flask_utils import FlaskDB
-from flask.ext.security import Security, PeeweeUserDatastore
-from flask_admin import Admin
-from flask_admin import helpers as admin_helpers
 
 from config import config
+from flask import Flask
+from flask.ext.bootstrap import Bootstrap
+from flask.ext.security import PeeweeUserDatastore, Security
+
 
 bootstrap = Bootstrap()
 
@@ -41,9 +41,13 @@ def create_app(config_name):
 
     #     Setup flask-admin
 
-    from .admin.controller import MyModelView
-    admin = Admin(app, 'Admin Panel',
-                  template_mode='bootstrap3')
+    from .admin.controller import MyModelView, MyAdminView
+    admin = Admin(app, 'Koodilehto Admin',
+                  template_mode='bootstrap3',
+                  index_view=MyAdminView(
+                      name='MyAdminView',
+                      template='admin/index.html',
+                      url='/admin'))
 
     admin.add_view(MyModelView(User))
     admin.add_view(MyModelView(Role))

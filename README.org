@@ -7,6 +7,7 @@ Some main components:
 - Jinja2 templating, Flask-Bootstrap, WTForms
 - ORM is [[https://peewee.readthedocs.org/en/latest/][Peewee]], which is advertised as being minimal and well documented.
 - [[https://pythonhosted.org/Flask-Security/][Flask-Security]] (based on Flask-Login, Flask-Principal etc.) handles role based user authentication, registration, mailing etc.
+- [[https://github.com/mrjoes/flask-admin/][Flask-Admin]] for administrative CRUD views, embedded to custom template
 
 Some interesting, yet to be configured, extensions are listed in [[file:TODO.org][TODO.org]]
 
