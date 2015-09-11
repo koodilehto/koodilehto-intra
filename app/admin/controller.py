@@ -1,7 +1,7 @@
 # Customized Flask-Admin view classes for embedding admin views to custom
 # page layout
 from flask import abort, redirect, url_for, request
-from flask.ext.security import current_user, roles_required
+from flask.ext.security import current_user, roles_required, login_required
 from flask_admin.contrib.peewee import ModelView
 from flask_admin.base import AdminIndexView, expose
 
@@ -9,6 +9,7 @@ from flask_admin.base import AdminIndexView, expose
 # Custom admin index view for
 class MyAdminView(AdminIndexView):
     @expose('/')
+    @login_required
     @roles_required('admin')
     def index(self):
         arg1 = 'Hello'

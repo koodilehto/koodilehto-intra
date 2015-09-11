@@ -13,6 +13,7 @@
 
 {% block page_content %}
 <div class="container">
+  % if current_user.is_authenticated()
   <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -38,6 +39,7 @@
       {% endblock %}
     </div>
   </nav>
+  % endif
   
   <!-- TODO hide when not running 'development' -->
   <a class="btn btn-danger pull-right float-right" href="{{url_for('public.init_db')}}">Init Database</a>
