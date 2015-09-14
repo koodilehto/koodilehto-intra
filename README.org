@@ -65,9 +65,13 @@ Host and port can be changed with options -h and -p eg. =python manage.py runser
 
 +Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.+
 
-* Utility commands
+* Testing & utility commands
+=./manage.py test= run tests
+=./manage.py test --coverage= run tests, show test coverages
+
 =./manage.py list_routes= shows registered routes
 
+Tests are to be written..
 * To Do
 See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO\|HACK]['TODO' and 'HACK']] codetags in source code.
 
