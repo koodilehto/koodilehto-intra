@@ -9,11 +9,11 @@ from .models import Role, User, UserRoles
 class ResetDB(Command):
     '''Drop and recreate tables'''
     def run(self):
-        self.drop_tables()
+        app = create_app('development')  # HACK -ish? Better way to do this?
+        self.drop_tables()  # TODO handle configuration variations
 
     @staticmethod
-    def drop_tables():  # TODO handle configuration variations
-        app = create_app('development')  # HACK -ish? Better way to do this?
+    def drop_tables():
         for m in (Role, User, UserRoles):
             m.drop_table(fail_silently=True)
             m.create_table(fail_silently=True)

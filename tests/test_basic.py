@@ -2,22 +2,18 @@
 from flask import current_app
 from flask.ext.testing import TestCase
 from app import create_app as the_create_app  # , db
+from app.scripts import ResetDB
 
 
 class BasicsTestCase(TestCase):
     def create_app(self):
         return the_create_app('testing')
 
-    # def setUp(self):
-    #     self.app = create_app()
-    #     self.app_context = self.app.app_context()
-    #     self.app_context.push()
-    #     # db.create_all()
-
-    # def tearDown(self):
-    #     # db.session.remove()
-    #     # db.drop_all()
-    #     self.app_context.pop()
+    def setUp(self):
+        '''Initialize database for test environment. Teardown should be
+        handled by utilizing FlaskDB Peewee helper'''
+        print("Clear and rebuild database")
+        ResetDB.drop_tables()
 
     def test_app_exists(self):
         self.assertFalse(current_app is None)
