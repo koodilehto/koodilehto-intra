@@ -42,6 +42,9 @@ def create_app(config_name):
     from .board import board as board_blueprint
     app.register_blueprint(board_blueprint)
 
+    from .invoice import invoice as invoice_blueprint
+    app.register_blueprint(invoice_blueprint)
+
     #     Setup flask-admin
 
     from .admin.controller import MyModelView, MyAdminView
