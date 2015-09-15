@@ -16,6 +16,8 @@
     height: 100%;
     position: fixed;
     max-width: 25%;
+    overflow-y: scroll;
+    height: 75%;
 }
 
 .preview {
@@ -23,7 +25,7 @@
     padding: 1em;
     box-shadow: 0.1em 0.1em 1em rgba(0,0,0,0.6);
     border: 1px solid;
-    margin-left: 35%;
+    margin-left: 32%;
     margin-bottom: 15px;
 }
 
@@ -47,7 +49,7 @@ fieldset {
 .form-element label {
     float: left;
     clear: left;
-    text-align: right;
+    text-align: left;
     width: 8em;
     margin-right: 1em;
 }
@@ -72,7 +74,6 @@ header .sender {
 
 header .extra {
     float: right;
-
     text-align: right;
 }
 
@@ -113,10 +114,6 @@ article, .info {
 
 .invoice {
     font-weight: bold;
-}
-
-footer {
-
 }
 
 /* hide unnecessary bits on print and make sure preview is fullsized */
