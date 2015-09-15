@@ -4,9 +4,15 @@
 
 <h1>Invoice generator</h1>
 
-<div class="react-main">TODO Load react component here</div>
+<div id="react-main">TODO Load react component here</div>
 
-<button class="btn btn-success">TODO Pass </button>
-<button class="btn btn-danger">TODO Clear form </button>
+<button class="btn btn-success">TODO Save</button>
+<button class="btn btn-danger">TODO Clear </button>
 
 % endblock
+
+{% block scripts %}
+{{ super() }}
+<script src="{{url_for('static', filename='invoice-frontend-bundle.js')}}"></script>
+
+{% endblock %}
