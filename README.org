@@ -1,3 +1,6 @@
+* UNMAINTAINED
+This software is no longer maintained and the whole project archived for future generations.
+
 * Overview
 Project structure is more or less based on:
 - O'Reilly book example https://github.com/miguelgrinberg/flasky
